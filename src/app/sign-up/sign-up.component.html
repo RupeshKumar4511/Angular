@@ -1,0 +1,17 @@
+
+<dialog class="popup" open>
+        <div class="contact-us">
+
+            
+          <form  method="post">
+            <h2>Two Way Binding Example </h2>
+            <h2>Sign Up</h2>
+            <input type="email" name="email" id="email" placeholder="   Email ID" [(ngModel)]="emailId"><br>
+            <input type="text" name="number" id="number" placeholder="   Password"> <br>
+            <input type="submit" class="contact-sub">
+          </form>
+        </div>
+    </dialog>
+
+
+    <h2>Your Email is {{emailId}}</h2>
