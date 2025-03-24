@@ -216,6 +216,7 @@ export class AppComponent {
 ```
 <br>
 We can specify multiple data types of a property in Typescript .
+<br>
 ```bash 
 
 // Ist way : define 2 different datatypes for 1 property 
