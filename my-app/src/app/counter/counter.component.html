@@ -1,0 +1,11 @@
+<div class="counter">
+<div class="display">
+    Result : <input type="text" placeholder="Your Result is " [(ngModel)]="result" disabled>
+</div>
+<div class="operations">
+<button class="btn bg-success" (click)="handleButton('incre')">Increment</button>
+<button class="btn bg-info" (click)="handleButton('decre')">Decrement</button>
+<button class="btn bg-danger" (click)="handleButton('reset')">Reset</button>
+</div>
+</div>
+

@@ -1,0 +1,41 @@
+.popup{
+    border :1px solid grey;
+    border-radius:10px;
+    background-color:#F5F5F5; 
+    z-index:2;
+    display:flex;
+    justify-content:center;
+    width:50vw;
+    
+  }
+  .contact-us{
+    padding-top:1vh;
+    
+  }
+  
+  
+  .cross-icon{
+    margin-left:30vw;
+    padding-right:0.5vw;
+    height:6vh;
+  }
+  
+  form{
+    margin:0px;
+    padding:0px;
+    
+  }
+  
+  input{
+    
+    margin-top:5%;
+    width:30vw;
+    height:5vh;
+    font-size:1em;
+  }
+  .contact-sub{
+    width:10vw;
+    background-color:#88D66C;
+    margin-bottom:8vh;
+    border-radius:10px;
+  }

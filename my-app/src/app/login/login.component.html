@@ -1,0 +1,16 @@
+<p>login works!</p>
+
+<input type="text" [placeholder]="fullname">
+
+
+<button (click)="handleButtonClick($event)" value="hello">Button</button>
+<br>
+<br>
+<textarea name="textarea" [attr.rows]="rowValue"></textarea>
+<br>
+<br>
+<input type="text"  name="email" #emailField value={{email}}>
+<button (click)="getEmail(emailField.value)">Get Value</button>
+<button (click)="setEmail()">Set Value</button>
+<br>
+<h6>Your Email is {{email}}</h6>
