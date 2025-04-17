@@ -1,0 +1,19 @@
+<div class="display">
+  <div>Todo Title : <input type="text" placeholder="Enter Title"  [(ngModel)]="todotitle" value={{todotitle}} /></div>
+  <div>Due Date : <input type="date" [(ngModel)]="tododate"  value={{tododate}}/></div>
+</div>
+<div class="display"><button class="btn btn-info" (click)="handleSubmit(todotitle,tododate)">Add Todo</button></div>
+
+<h2 class="display">Todos List</h2>
+
+@for(todo of todos;track todo){
+<div class="todos">
+    <h6>Title: <span style="color: blue;">{{todo.title}}</span></h6> 
+    <h6>Due Date : <span style="color: blue;">{{todo.DueDate}}</span></h6>
+    <div class="btns"><button class="btn bg-danger" (click)="handleDelete(todo.SNo)">Delete</button>
+    <button class="btn bg-success" (click)="handleMark(todo)">{{todo.mark===false?"Mark to Completed":"Completed"}}</button></div>
+
+</div>
+}
+<br>
+<br>

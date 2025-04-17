@@ -1,9 +1,10 @@
 <h1>App Component </h1> 
+<app-welcome></app-welcome>
 <login></login>
 <login></login>
 
 <profile></profile>
-<sign-up></sign-up>
+<!-- <sign-up></sign-up> -->
 
 <!-- <h3>{{name}}</h3>
 <p>{{3+2}}</p>
@@ -12,3 +13,86 @@
 <h1>sum is {{sum(10,20)}}</h1>
 <app-counter></app-counter>
 
+<!--Use of Control Flow Statemeny -->
+<!-- <button (click)="toggle()" style="margin-left: 50px;">{{display===true?"show red div":"show gold div"}}</button>
+<br>
+@if(display){
+    <div style="width: 200px; height: 200px; background-color: gold; margin-left: 50px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero obcaecati quibusdam totam quidem quam ad veniam!</div>
+}
+@else{
+    <div style="width: 200px; height: 200px; background-color: red; margin-left: 50px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero sit quisquam delectus incidunt nulla, architecto quia error </div>
+} -->
+<br>
+<br>
+
+<button (click)="toggle()" style="margin-left: 50px;">Toggle</button>
+<br>
+<div *ngIf="display === true">This is a Content Box</div>
+<!-- <ng-template #other>This is Second Content Box..</ng-template> -->
+
+
+<br>
+<!-- <button (click)="setColor(1)">Gold</button>
+<button (click)="setColor(2)">Red</button>
+<button (click)="setColor(3)">Blue</button>
+<br>
+@if(color===1){
+    <div style="width: 200px; height: 200px; background-color: gold;"></div>
+}
+@else if(color===2){
+    <div style="width: 200px; height: 200px; background-color: red;"></div>
+}
+@else if(color===3){
+    <div style="width: 200px; height: 200px; background-color: blue;"></div>
+} -->
+
+<!-- <button (click)="switchColor(1)">Gold</button>
+<button (click)="switchColor(2)">Red</button>
+<button (click)="switchColor(3)">Blue</button>
+<input type="text" (input)="handleInput($event)" placeholder="enter color code">
+<br>
+@switch(color){
+    @case(1){
+        <div style="width: 200px; height: 200px; background-color: gold;"></div>
+    }
+    @case(2){
+    <div style="width: 200px; height: 200px; background-color: red;"></div>
+    }
+    @case(3){
+    <div style="width: 200px; height: 200px; background-color: blue;"></div>
+    }
+    @default{
+        <div style="width: 200px; height: 200px; background-color: black;"></div>
+    } 
+    
+
+} -->
+
+<div *ngFor="let student of students" >
+    <div >Student_name : {{student.name}}</div>
+</div>
+
+<!-- @for(student of students;track student ; let i= $index){
+    @if($first || $last){
+       <div> Index no is {{i}} and student name is {{student.name}} and his age is {{student.age}} and his id is {{student.id}}.</div>
+    }
+
+    @if($odd ){
+        <div style="background-color: gold;"> Index no is {{i}} and student name is {{student.name}} and his age is {{student.age}} and his id is {{student.id}}.</div>
+     } @else if($even){
+        <div style="background-color: aliceblue;"> Index no is {{i}} and student name is {{student.name}} and his age is {{student.age}} and his id is {{student.id}}.</div>
+        <div>Total count is {{$count}}</div>
+     }
+        
+    
+}  -->
+
+
+<!-- <input type="text" value="{{count()}}" disabled>
+<button (click)="count.set(count()+1)">Increment</button>
+<button (click)="count.set(count()-1)">Decrement</button> -->
+
+
+<!-- <button (click)="handleComputedSignal()">Click Me</button> -->
+
+<app-todo-list></app-todo-list>

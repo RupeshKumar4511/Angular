@@ -1,0 +1,20 @@
+.display{
+    display:flex;
+    justify-content:center;
+    margin-top:10px;
+}
+.display div{
+    margin-left:10px;
+}
+
+.todos{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:10px;
+    flex-direction:column;
+}
+
+.btns button{
+    margin-right:10px;
+}

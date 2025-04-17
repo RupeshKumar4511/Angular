@@ -14,7 +14,7 @@ Reactive Forms & Template-Driven Forms – Helps manage user inputs efficiently.
 Observables & RxJS – Provides reactive programming with asynchronous data handling.
 ```
 # Directives : 
-Directives modify the DOM structure by adding or removing elements dynamically. 
+Directives are the instructions in the document object model which extends HTML with custom behavior (e.g., *ngFor, *ngIf).
 
 # Angular Architecture And Building Block of Angular:
 https://www.geeksforgeeks.org/explain-the-architecture-overview-of-angular/
@@ -307,4 +307,276 @@ In component.ts files :
 styleUrls:['./profile.btn.css','profile.component.css']
 
 ```
-# 
+# Control Flow statement in HTML file : 
+
+```bash 
+// use of IF-ELSE 
+export class AppComponent {
+	display= true;
+	toggle(){
+		this.display = !this.display;
+	}
+
+}
+
+
+
+<button (click)="toggle()">{{display===true?"show red div":"show gold div"}}</button>
+<br>
+@if(display){
+    <div style="width: 200px; height: 200px; background-color: gold;"></div>
+}
+@else{
+    <div style="width: 200px; height: 200px; background-color: red;"></div>
+}
+
+
+
+
+
+
+
+// use of ELSE-IF statement 
+export class AppComponent {
+	color=1;
+	setColor(val:number){
+		this.color= val;
+	}
+}
+
+
+<button (click)="setColor(1)">Gold</button>
+<button (click)="setColor(2)">Red</button>
+<button (click)="setColor(3)">Blue</button>
+<br>
+@if(color===1){
+    <div style="width: 200px; height: 200px; background-color: gold;"></div>
+}
+@else if(color===2){
+    <div style="width: 200px; height: 200px; background-color: red;"></div>
+}
+@else if(color===3){
+    <div style="width: 200px; height: 200px; background-color: blue;"></div>
+}
+
+```
+
+# Switch Case 
+```bash
+export class AppComponent {
+	color=1;
+	switchColor(val:number){
+		this.color= val;
+	}
+
+  handleInput(event:Event){
+		this.color = parseInt((event.target as HTMLInputElement).value)
+	}
+
+}
+
+
+<button (click)="switchColor(1)">Gold</button>
+<button (click)="switchColor(2)">Red</button>
+<button (click)="switchColor(3)">Blue</button>
+<input type="text" (input)="handleInput($event)" placeholder="enter color code">
+<br>
+@switch(color){
+    @case(1){
+        <div style="width: 200px; height: 200px; background-color: gold;"></div>
+    }
+    @case(2){
+    <div style="width: 200px; height: 200px; background-color: red;"></div>
+    }
+    @case(3){
+    <div style="width: 200px; height: 200px; background-color: blue;"></div>
+    }
+    @default{
+        <div style="width: 200px; height: 200px; background-color: black;"></div>
+    } 
+    
+
+}
+```
+
+# For loop 
+```bash
+// In ts file
+students = [{name:"Adam",age:23,id:123},
+		{name:"John",age:24,id:124},
+		{name:"Sam",age:25,id:125}
+	]
+
+
+// In html file
+@for(student of students;track student ; let i= $index){
+    <h1>
+        <span>{{i}}</span>
+        <span>{{student.name}}</span>
+        <span>{{student.age}}</span>
+        <span>{{student.id}}</span>
+    </h1>
+
+}
+```
+
+
+# Signals and effect :
+In Angular, signals are a new reactivity model introduced to handle state management and change detection more efficiently.(Alternate to RxJs).
+<br>
+A signal is wrapper around a value that gives signal when value changes. 
+<br>
+There are two types of signal. 
+<br>
+1. WritableSignal : Writable signals provide an API for updating their values directly.
+<br>
+2. ComputedSignal : Computed signal are read-only signals that derive their value from other signals.
+<br>
+```bash
+// In the ts file 
+
+count = signal(0);
+
+	constructor(){
+		effect(()=>{
+		console.log(this.count());
+		})
+
+
+    // effect() is a function used to react to changes in signals.
+	}
+
+
+
+// In the html file
+<input type="text" value="{{count()}}" disabled>
+<button (click)="count.set(count()+1)">Increment</button>
+<button (click)="count.set(count()-1)">Decrement</button>
+
+
+
+
+
+
+// how to define the data type of signal 
+// The signal itself is an object that manages reactivity.
+count:<number|string> = signal(10);
+// count is of type Signal<number|string>, meaning it is a reactive signal that holds a number or string. 
+
+
+
+// how to define the data type of signal's value
+// The type is inferred from the signal's initial value.
+
+count= signal<number|string> (10);
+// this.count() returns a number, which is the signal value data type.
+
+
+
+// WritableSignal 
+count:WritableSignal<number|string> = signal(10);
+
+// other method to update the WritableSignal value:
+count.update((val)=> val + 1); // this only works for single datatype like number. 
+
+
+
+
+// ComputedSignal (read only)
+count:Signal<number> = computed(()=>10);
+
+// Another Example of ComputedSignal
+x=signal(10);
+y=signal(20);
+data:Signal<number> = computed(()=> this.x() + this.y());
+handleComputedSignal(){
+  console.log(this.data()); // 30
+  this.x.set(100);
+  console.log(this.data()); // 120
+}
+
+Note : We can change the computed signal value if it is dependent on some another Writable Signal. 
+
+```
+
+# For loop Contextual Variable :
+A contextual variable in Angular refers to a special variable available within structural directives (like *ngFor, *ngIf, etc.), which provides context-specific information inside the template. 
+
+<br>
+```bash 
+// For loop Contextual variables are : $first, $index,$last,$odd,$even,$count .
+
+// In ts file
+students = [{name:"Adam",age:23,id:123},
+		{name:"John",age:24,id:124},
+		{name:"Sam",age:25,id:125}
+	]
+
+
+
+
+// In the HTML file 
+@for(student of students;track student ; let i= $index){
+  <!-- @if($first || $last){
+     <div> Index no is {{i}} and student name is {{student.name}} and his age is {{student.age}} and his id is {{student.id}}.</div>
+  } -->
+
+  @if($odd ){
+      <div style="background-color: gold;"> Index no is {{i}} and student name is {{student.name}} and his age is {{student.age}} and his id is {{student.id}}.</div>
+   } @else if($even){
+      <div style="background-color: aliceblue;"> Index no is {{i}} and student name is {{student.name}} and his age is {{student.age}} and his id is {{student.id}}.</div>
+      <div>Total count is {{$count}}</div>
+   }
+      
+  
+} 
+```
+
+# Two Way Binding :
+We can perform two way binding using two way:
+<br>
+1. Using ngModel
+<br>
+2. Using events
+<br>
+```bash 
+// In ts file
+export class SignUpComponent {
+
+  // for first way
+  emailId:string= "";
+
+  // for 2nd way 
+  handleChange(event:Event){
+    this.emailId = (event.target as HTMLInputElement).value; 
+  }
+
+
+
+}
+
+
+// In html files
+<div class="popup" >
+  <div class="contact-us"> 
+    <form  method="post">
+      <h2>Two Way Binding Example </h2>
+      <input type="email" name="email" id="email" placeholder="   Email ID" [(ngModel)]="emailId"><br>
+      <h2>Your Email is :</h2>  <p>{{emailId}}</p>  
+    </form>
+  </div>
+</div>
+
+
+// using events
+<div class="popup" >
+  <div class="contact-us"> 
+    <form  method="post">
+      <h2>Two Way Binding Example </h2>
+      <input type="email" name="email" id="email" placeholder="   Email ID" (input)="handleChange()"><br>
+      <h2>Your Email is :</h2>  <p>{{emailId}}</p>  
+    </form>
+  </div>
+</div>
+
+```

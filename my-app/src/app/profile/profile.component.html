@@ -1,0 +1,27 @@
+<div class="popup" >
+    <div class="container"> 
+      <form  [formGroup]="profileForm" (ngSubmit)="handleSubmit()">
+        <h2>User Regration</h2>
+        <input type="text" name="username" id="username" placeholder="Enter Username" formControlName="username" >
+        <span *ngIf="username?.hasError('required')">*</span>
+        <br>
+        <span *ngIf="username?.invalid && (username?.dirty || username?.touched)">Please Enter valid name </span>
+        <br>
+        <input type="email" name="email" id="email" placeholder="Enter Email" formControlName="email">
+        <span *ngIf="email?.hasError('required')">*</span>
+        <br>
+        <span *ngIf="email?.invalid && (email?.dirty || email?.touched)">Please Enter valid email </span>
+        <br>
+        <input type="password" name="password" id="password" placeholder="Enter Password" formControlName="password">
+        <span *ngIf="password?.hasError('required')">*</span>
+        <br>
+        <span *ngIf="password?.invalid && (password?.dirty || password?.touched)">Please Enter valid password</span>
+        <br>
+
+        <button class="btn bg-primary mt-2 " >Submit</button>
+      </form>
+    </div>
+</div>
+
+
+

@@ -9,7 +9,7 @@
 <textarea name="textarea" [attr.rows]="rowValue"></textarea>
 <br>
 <br>
-<input type="text"  name="email" #emailField value={{email}}>
+<input type="text"  name="email" #emailField value={{email}} placeholder="Enter your Email">
 <button (click)="getEmail(emailField.value)">Get Value</button>
 <button (click)="setEmail()">Set Value</button>
 <br>
