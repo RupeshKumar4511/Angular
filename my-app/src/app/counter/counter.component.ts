@@ -15,7 +15,12 @@ export class CounterComponent {
     if(op=='incre'){
       this.result = this.result + 1;
     }else if(op=='decre'){
-      this.result = this.result - 1;
+      if(this.result <= 0){
+        this.result = 0;
+      }else{
+        this.result = this.result - 1;
+      }
+      
     }else if(op=='reset'){
       this.result = 0;
     }

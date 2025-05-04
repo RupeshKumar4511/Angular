@@ -1,0 +1,55 @@
+<p>Welcome to My application</p>
+<button (click)="toggle()">Click Me</button>
+<br>
+<p *ngIf="display== true">I am here to solve your problem </p>
+<br>
+<div *ngFor="let name of names">
+    <span>{{name}}</span>
+</div>
+<br>
+<br>
+
+Name : <input type="text" [(ngModel)]="fullname" >
+<br>
+<br>
+Your name is {{fullname}}
+<br>
+<br>
+<input type="text" [(ngModel)]="result" disabled>
+<br>
+<button (click)="handleClick('increment')">Increment</button>
+<button (click)="handleClick('decrement')">decrement</button>
+<br>
+<br>
+Enter Todo Title : <input type="text" [(ngModel)]="todotitle" value="todotitle">
+<br>
+Enter DueDate  : <input type="date" [(ngModel)]="todoDate" value="todoDate">
+<br>
+<button (click)="handleSubmit(todotitle,todoDate)">Add Todo</button>
+<br>
+<br>
+@for(todo of todos;track todo){
+    <div>
+        <h4>{{todo.todotitle}}</h4>
+        <p>{{todo.todoDate}}</p>
+        <button (click)="handleDelete(todo.SNo)">Delete</button>
+        <button (click)="handleMark(todo)">{{todo.mark==false?"Mark to Compelete":"Completed"}}</button>
+    </div>
+}
+<br>
+<br>
+
+<form [formGroup]="profileForm" (ngSubmit)="handleFormSubmit()">
+    Email: <input type="text" name="email" id="email" formControlName="email">
+    <span *ngIf="email?.hasError('required')">*</span>
+    <br>
+    <span *ngIf="email?.invalid && (email?.dirty || email?.touched)">Please Provide correct email</span>
+    <br>
+    <br>
+    Password: <input type="password" name="password" id="password" formControlName="password">
+    <span *ngIf="password?.hasError('required')">*</span>
+    <br>
+    <span *ngIf="password?.invalid  && (password?.dirty || password?.touched)">Please provide correct password</span>
+    <br>
+    <input type="submit">
+</form>

@@ -1,16 +1,20 @@
 <h1>App Component </h1> 
+<test></test>
 <app-welcome></app-welcome>
+<!-- <login></login> -->
 <login></login>
-<login></login>
+<sign-up></sign-up>
+<br>
+<br>
 
 <profile></profile>
-<!-- <sign-up></sign-up> -->
+
 
 <!-- <h3>{{name}}</h3>
 <p>{{3+2}}</p>
 <h1>{{"String".toUpperCase()}}</h1> -->
 
-<h1>sum is {{sum(10,20)}}</h1>
+<!-- <h1>sum is {{sum(10,20)}}</h1> -->
 <app-counter></app-counter>
 
 <!--Use of Control Flow Statemeny -->
@@ -27,8 +31,8 @@
 
 <button (click)="toggle()" style="margin-left: 50px;">Toggle</button>
 <br>
-<div *ngIf="display === true">This is a Content Box</div>
-<!-- <ng-template #other>This is Second Content Box..</ng-template> -->
+<div *ngIf="display === true; else other" >This is a Content Box</div>
+<ng-template #other>This is Second Content Box..</ng-template>
 
 
 <br>

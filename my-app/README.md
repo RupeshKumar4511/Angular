@@ -3,7 +3,9 @@ Angular is a TypeScript-based framework for building dynamic web applications. I
 <br>
 Key Features of Angular with TypeScript:
 <br>
+
 ```bash
+
 Component-Based Architecture – Applications are built using reusable components.
 TypeScript Support – Ensures type safety and better code maintainability.
 Two-Way Data Binding – Automatically updates the UI when the data changes.
@@ -13,11 +15,40 @@ Routing – Enables navigation between views with RouterModule.
 Reactive Forms & Template-Driven Forms – Helps manage user inputs efficiently.
 Observables & RxJS – Provides reactive programming with asynchronous data handling.
 ```
+
 # Directives : 
 Directives are the instructions in the document object model which extends HTML with custom behavior (e.g., *ngFor, *ngIf).
 
 # Angular Architecture And Building Block of Angular:
 https://www.geeksforgeeks.org/explain-the-architecture-overview-of-angular/
+<br>
+
+```bash 
+
+              MVC-Based Angular Architecture
+
++-------------+     Event Binding    +--------------+
+|   Template  | ------------------→  |  Component   |
+|   (View)    |                      | (Controller) |
+| - HTML/CSS  |     Property Binding | - Logic      |
+| - UI Events | <------------------- | - Handles    |
++-------------+                      +--------------+
+                                           |
+                                           |
+                                           ↓
+                                     +-------------+
+                                     |  Services   |
+                                     |  (Model)    |
+                                     | - Business  |
+                                     | - API Data  |
+                                     +-------------+
+
+```
+
+<br>
+
+# Dependency  Injection
+To enable reuse and sharing of logic across components.
 
 # Angular File and Folder Structure:
 
@@ -122,7 +153,7 @@ A component in Angular is the building block of an application. Each component c
  CSS Styles -> Defines styles (.css)
 
 ```
-# Selecotrs in Components : 
+# Selectors in Components : 
 The selector in an Angular component is used to define a custom HTML tag that represents the component in an Angular template. It allows you to use the component within other components.
 <br>
 Element selectors (app-header) are the most common.
@@ -155,6 +186,9 @@ We can perform basic text Interpolation, math operation,Function call , Object P
 We cannot declare variable, increment or decrement operation, for/while loop. 
 
 # Event Binding : 
+Event Binding is a way to listen to and respond to user actions like clicks,keypresses, mouse movements, etc., in your HTML templates.
+<br>
+
 ```bash
 <button (click)="handleButtonClick()">Button</button>
 
@@ -169,6 +203,7 @@ export class LoginComponent {
 ```
 
 # Property Binding : 
+
 Property binding is used to bind values directly to the DOM properties of an element.
 It modifies the actual property of the DOM element.
 <br>
@@ -250,6 +285,9 @@ export class AppComponent {
 
 ```
 # Event Handling :
+Event Handling refers to the process of responding to user actions 
+<br>
+
 ```bash
 <button (click)="handleButtonClick($event)">Button</button>
 // In place of "click" there can be many events like mouseenter,mouseleave,input,focus,blur and many more.
@@ -302,6 +340,7 @@ We can load multiple css for a component.
 <br>
 In component.ts files : 
 <br>
+
 ```bash
 
 styleUrls:['./profile.btn.css','profile.component.css']
@@ -432,6 +471,7 @@ There are two types of signal.
 <br>
 2. ComputedSignal : Computed signal are read-only signals that derive their value from other signals.
 <br>
+
 ```bash
 // In the ts file 
 
@@ -503,6 +543,7 @@ Note : We can change the computed signal value if it is dependent on some anothe
 A contextual variable in Angular refers to a special variable available within structural directives (like *ngFor, *ngIf, etc.), which provides context-specific information inside the template. 
 
 <br>
+
 ```bash 
 // For loop Contextual variables are : $first, $index,$last,$odd,$even,$count .
 
@@ -539,8 +580,10 @@ We can perform two way binding using two way:
 <br>
 2. Using events
 <br>
+
 ```bash 
 // In ts file
+ imports: [FormsModule]
 export class SignUpComponent {
 
   // for first way
@@ -578,5 +621,87 @@ export class SignUpComponent {
     </form>
   </div>
 </div>
+
+```
+
+# @Input() and @Output() decorator 
+```bash
+1. @Input() – Pass Data from Parent to Child
+The @Input() decorator allows a child component to receive data from its parent component.
+
+Example:
+Child Component (child.component.ts)
+
+import { Component, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  template: `<p>Hello, {{ name }}!</p>`
+})
+export class ChildComponent {
+  @Input() name!: string;  // receives 'name' from parent
+}
+
+
+Parent Component (parent.component.html)
+
+<app-child [name]="'Angular User'"></app-child>
+
+
+2. @Output() – Send Data from Child to Parent
+
+The @Output() decorator allows a child component to emit events back to the parent using EventEmitter.
+
+Example:
+Child Component (child.component.ts)
+
+import { Component, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  template: `<button (click)="sendMessage()">Click Me</button>`
+})
+export class ChildComponent {
+  @Output() messageEvent = new EventEmitter<string>();
+
+  sendMessage() {
+    this.messageEvent.emit('Hello from child!');
+  }
+}
+Parent Component (parent.component.html)
+
+<app-child (messageEvent)="receiveMessage($event)"></app-child>
+<p>{{ message }}</p>
+
+Parent Component (parent.component.ts)
+
+export class ParentComponent {
+  message = '';
+
+  receiveMessage(event: string) {
+    this.message = event;
+  }
+}
+```
+
+# Angular Aninamations
+In Angular, animations are built using the @angular/animations module, which provides a declarative API to define smooth transitions and animations in your components.
+
+# Component Life Cycle Hooks :
+In Angular, Component Lifecycle Hooks are special methods that allow you to tap into key moments in a component's lifecycle — from creation to destruction.
+<br>
+They help you run custom logic at specific stages, like initializing data, reacting to input changes, or cleaning up resources.
+<br>
+```bash
+
+Hook	Called When
+ngOnChanges()	When any @Input() property value changes
+ngOnInit()	Once after the first ngOnChanges() — used for initialization
+ngDoCheck()	On every change detection run (custom change detection)
+ngAfterContentInit()	After external content is projected into the component (<ng-content>)
+ngAfterContentChecked()	After the projected content is checked
+ngAfterViewInit()	After the component's view (and child views) has been initialized
+ngAfterViewChecked()	After the view (and child views) has been checked
+ngOnDestroy()	Just before the component is removed (for cleanup)
 
 ```

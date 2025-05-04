@@ -29,6 +29,12 @@ export class ProfileComponent{
 
 
     handleSubmit(){
+        if(this.profileForm.valid){
+            alert("form submitted sucessfully")
+        }else{
+            alert("Complete Form details")
+        }
+        
         console.log(this.profileForm.value);
     }
 }

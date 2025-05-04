@@ -9,9 +9,10 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { CounterComponent } from './counter/counter.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { TestComponent } from './test/test.component';
 @Component({
 	selector: 'app-root', // custom tag
-	imports: [RouterOutlet, LoginComponent, ProfileComponent, SignUpComponent, CounterComponent,TodoListComponent,WelcomeComponent,CommonModule],
+	imports: [RouterOutlet, LoginComponent, ProfileComponent, SignUpComponent, CounterComponent,TodoListComponent,WelcomeComponent,CommonModule,TestComponent],
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.css'
 })
@@ -76,11 +77,3 @@ export class AppComponent {
 	}
 	
 }
-
-
-// export class AppComponent {
-// 	students = [{name:"Adam",age:23,id:123},
-// 		{name:"John",age:24,id:124},
-// 		{name:"Sam",age:25,id:125}
-// 	];
-// }

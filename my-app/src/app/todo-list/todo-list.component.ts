@@ -12,10 +12,15 @@ export class TodoListComponent {
   todos:any = [];
   SNo= 0 ;
   handleSubmit(title:string,date:any){
+    if(title){
     this.todos = [...this.todos,{title:title,DueDate:date,SNo:this.SNo,mark:false}]
     this.todotitle="";
     this.tododate="";
     this.SNo++;
+    }else{
+      alert("Please enter your todo title")
+    }
+    
   }
 
   handleDelete(todoSNo:any){
